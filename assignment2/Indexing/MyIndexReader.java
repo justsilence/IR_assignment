@@ -17,16 +17,14 @@ public class MyIndexReader {
 
     private String currentPath;
 
-    private Map<String, Long> collFreq;
+	private Map<String, Long> collFreq;
+	
 	private ArrayList<String> docNo2Id;
 
 	private int[][] postingList;
 
 	private int frequency = 0;
 
-
-
-	
 	public MyIndexReader( String type ) throws IOException {
 		//read the index files you generated in task 1
 		//remember to close them when you finish using them
@@ -111,29 +109,6 @@ public class MyIndexReader {
 	public int[][] GetPostingList( String token ) throws IOException {
 	    if (!collFreq.containsKey(token))
 		    return null;
-
-//	    FileReader fr = new FileReader(file + Path.PostingList);
-//	    BufferedReader br = new BufferedReader(fr);
-//	    String line;
-//	    String str = new String();
-//	    while ((line = br.readLine()) != null) {
-//	        String[] content = line.split("|");
-//	        if (content[0].equals(token)) {
-//	            str = content[1];
-//	            break;
-//            }
-//        }
-//	    br.close();
-//	    fr.close();
-//	    String[] contentOfPosting = str.split(",");
-//	    frequency = contentOfPosting.length;
-//	    int[][] postingList = new int[contentOfPosting.length][2];
-//	    for (int i = 0; i < contentOfPosting.length; ++i) {
-//	        String[] currPost = contentOfPosting[i].split(":");
-//            postingList[i][0] = Integer.parseInt(currPost[0]);
-//            postingList[i][1] = Integer.parseInt(currPost[1]);
-//        }
-
 	    return postingList;
 	}
 
@@ -176,7 +151,7 @@ public class MyIndexReader {
 	}
 	
 	public void Close() throws IOException {
+
 	}
 
-	
 }

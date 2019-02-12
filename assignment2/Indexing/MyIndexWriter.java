@@ -136,16 +136,17 @@ public class MyIndexWriter {
 
 
 
-    /* in the merge method, the situation that same term which occurs in different blocks need to be handled.
-            For example, if the block size is 20000, then the first block is document 1 to document 20000,
-            the second block is document 20001 to 40000.
-            If the first block contains term hello, and posting list:frequency is 1:2,3:1,2019:2.
-                Format: hello|1:2,3:1,2019:2
+    /* 
+        in the merge method, the situation that same term which occurs in different blocks need to be handled.
+        For example, if the block size is 20000, then the first block is document 1 to document 20000,
+        the second block is document 20001 to 40000.
+        If the first block contains term hello, and posting list:frequency is 1:2,3:1,2019:2.
+            Format: hello|1:2,3:1,2019:2
 
-            the second block also contains term hello, and posting:frequency is 20001:1,22019:2.
-                Format: hello|20001:1,22019:2
+        the second block also contains term hello, and posting:frequency is 20001:1,22019:2.
+            Format: hello|20001:1,22019:2
 
-            After merge, it should be hello|1:2,3:1,2019:2,20001:1,22019:2
+        After merge, it should be hello|1:2,3:1,2019:2,20001:1,22019:2
     */
     private void merge() throws IOException {
         FileWriter postWriter = new FileWriter(currentPath + Path.PostingList);
